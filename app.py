@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.login()
+st.write(st.experimental_user)
 
 # if not st.experimental_user.is_logged_in:
 #   if st.button("Log in"):
