@@ -5,5 +5,4 @@ if not st.experimental_user.is_logged_in:
     st.stop()
 
 st.button("Log out", on_click=st.logout)
-st.markdown(f"Welcome! {st.experimental_user.name}")
-  
+st.write(st.experimental_user)
