@@ -1,0 +1,1 @@
+The directory contains two folders: emp_data, which contains documents that serve as the RAG index for regular employees (non-managers), and mng_data, which contains documents that serve as the RAG index for managers.
