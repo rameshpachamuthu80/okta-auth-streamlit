@@ -13,6 +13,7 @@ st.button("Log out", on_click=st.logout)
 st.write(f"Welcome {st.experimental_user.name}!")
 st.write(f"Role: {st.experimental_user.job_title}!")
 
+# Credits: https://github.com/streamlit/llamaindex-chat-with-streamlit-docs/tree/main
 
 st.set_page_config(page_title="Chat with the Streamlit docs, powered by LlamaIndex", page_icon="🦙", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
