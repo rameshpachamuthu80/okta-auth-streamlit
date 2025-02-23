@@ -4,20 +4,18 @@ from llama_index.llms.openai import OpenAI
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 
 
-st.set_page_config(page_title="Okta Auth Demo", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Okta Auth Demo", page_icon='🔐', layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 if not st.experimental_user.is_logged_in:
     st.button("Log in with Okta", on_click=st.login)
     st.stop()
-
-
+    
 st.button("Log out", on_click=st.logout)
 #st.write(st.experimental_user)
 
 # Credits: https://github.com/streamlit/llamaindex-chat-with-streamlit-docs/tree/main
 openai.api_key = st.secrets.openai.key
-st.title("Identity-Aware Chat Demo")
-st.info("Check out the full tutorial to build this app in our [blog post](https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/)", icon="📃")
+st.title("Identity-Aware Chat Demo (Powered by Okta & OpenAI)")
 
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
