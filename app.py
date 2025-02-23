@@ -57,11 +57,11 @@ with st.expander("See more"):
 
     ## 🚀 How It Works:  
     - The **Streamlit app** is deployed on **Streamlit Community Cloud** and integrated with an **Okta account** using **OIDC**  
-      _(see [Okta documentation](#) for details)_.  
+      _(see [docs](https://docs.streamlit.io/develop/concepts/connections/authentication) for details)_.  
     - Only users **assigned to the app** can access it via the **Okta dashboard** after verification with a **password and an Okta Verify code**.  
     - **Metadata** about the currently logged-in user _(e.g., name, email, etc.)_ is available in `st.experimental_user`.  
       This data is **parsed from the ID Token** that Okta sends.  
-    - Additional **custom attributes** can be added as **custom claims** in Okta Admin _(see [Okta docs](#))_.  
+    - Additional **custom attributes** can be added as **custom claims** in Okta Admin _(see [Okta docs](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/main/))_.  
       **⚠️ Note:** To retrieve additional attributes, you **must use a custom authorization server**!  
     - Each user has an attribute:  
       - **`is_manager`** (_boolean_)  
@@ -88,12 +88,8 @@ with st.expander("See more"):
       st.experimental_user.is_manager  
       ```  
       to determine the appropriate **document directory path**.  
-
-    ---  
-    **🔗 Learn More:** [Streamlit Auth Docs](#) | [Okta Docs](#) | [LlamaIndex Docs](#)  
     """  
 )
-    
 
 if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
     st.session_state.chat_engine = index.as_chat_engine(
