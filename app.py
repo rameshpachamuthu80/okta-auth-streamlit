@@ -3,7 +3,7 @@ import openai
 from llama_index.llms.openai import OpenAI
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 
-st.set_page_config(page_title="Okta Auth Demo", page_icon='🔐', layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Okta Auth Demo", page_icon='🔐', initial_sidebar_state="auto", menu_items=None)
 
 if not st.experimental_user.is_logged_in:
     st.button("Log in with Okta", on_click=st.login)
@@ -52,8 +52,6 @@ st.info(f"Welcome {st.experimental_user.name}! Your Role: {st.experimental_user.
 with st.expander("See more"):
     st.markdown(  
     """  
-    # 🏆 AI Chatbot Demo with Streamlit, Okta, LlamaIndex & OpenAI  
-
     This **demo app** presents a **simple, user identity-aware AI chatbot** using the new **native Streamlit authentication** functionality  
     _(available as of the **1.42.0** release)_, along with **Okta, LlamaIndex, and OpenAI**.  
 
