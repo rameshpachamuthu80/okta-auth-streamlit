@@ -21,13 +21,14 @@ st.info("Check out the full tutorial to build this app in our [blog post](https:
 
 col1, col2 = st.columns(2)
 
-if "messages" not in st.session_state.keys():  # Initialize the chat messages history
-    st.session_state.messages = [
-        {
-            "role": "assistant",
-            "content": "Ask me a question!",
-        }
-    ]
+with col2:
+    if "messages" not in st.session_state.keys():  # Initialize the chat messages history
+        st.session_state.messages = [
+            {
+                "role": "assistant",
+                "content": "Ask me a question!",
+            }
+        ]
 
 @st.cache_resource(show_spinner=False)
 def load_data(dir):
