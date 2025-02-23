@@ -49,7 +49,7 @@ index = load_data(dir)
 # display info about currently logged in user
 st.info(f"Welcome {st.experimental_user.name}! Your Role: {st.experimental_user.job_title}")
 
-with st.expander("Learn More:"):
+with st.expander("Learn More"):
     st.markdown(  
     """  
     This **demo app** presents a **simple, user identity-aware AI chatbot** using the new **native Streamlit authentication** functionality  
@@ -69,7 +69,7 @@ with st.expander("Learn More:"):
 
     ## 💬 Chatbot & Retrieval Setup  
     - A **boilerplate chat interface** is built using **native Streamlit functionality**.  
-    - We use **LlamaIndex** with `SimpleDirectoryReader` to set up a **basic RAG pipeline**, which:  
+    - We use **LlamaIndex** with [SimpleDirectoryReader](https://docs.llamaindex.ai/en/stable/examples/data_connectors/simple_directory_reader/) to set up a **basic RAG pipeline**, which:  
       - **Loads** documents from a directory  
       - **Stores** embeddings in a **local vector store**  
       - **Makes** them available for **LLM querying**  
