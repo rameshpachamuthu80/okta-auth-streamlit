@@ -19,16 +19,13 @@ openai.api_key = st.secrets.openai.key
 st.title("Identity-Aware Chat Demo")
 st.info("Check out the full tutorial to build this app in our [blog post](https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/)", icon="📃")
 
-col1, col2 = st.columns(2)
-
-with col2:
-    if "messages" not in st.session_state.keys():  # Initialize the chat messages history
-        st.session_state.messages = [
-            {
-                "role": "assistant",
-                "content": "Ask me a question!",
-            }
-        ]
+if "messages" not in st.session_state.keys():  # Initialize the chat messages history
+    st.session_state.messages = [
+        {
+            "role": "assistant",
+            "content": "Ask me a question!",
+        }
+    ]
 
 @st.cache_resource(show_spinner=False)
 def load_data(dir):
@@ -52,32 +49,29 @@ else:
 
 index = load_data(dir)
 
-with col1:
-    st.write(f"Welcome {st.experimental_user.name}!")
-    st.write(f"Your Role: {st.experimental_user.job_title}")
+# display info about currently logged in user
+st.info(f"Welcome {st.experimental_user.name}! Your Role: {st.experimental_user.job_title}")
 
-with col2:
-    if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
-        st.session_state.chat_engine = index.as_chat_engine(
-            chat_mode="condense_question", verbose=True, streaming=True
-        )
-    
-    if prompt := st.chat_input(
-        "Ask a question"
-    ):  # Prompt for user input and save to chat history
-        st.session_state.messages.append({"role": "user", "content": prompt})
-    
-    for message in st.session_state.messages:  # Write message history to UI
-        with st.chat_message(message["role"]):
-            st.write(message["content"])
-    
-    # If last message is not from assistant, generate a new response
-    if st.session_state.messages[-1]["role"] != "assistant":
-        with st.chat_message("assistant"):
-            response_stream = st.session_state.chat_engine.stream_chat(prompt)
-            st.write_stream(response_stream.response_gen)
-            message = {"role": "assistant", "content": response_stream.response}
-            # Add response to message history
-            st.session_state.messages.append(message)
+if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
+    st.session_state.chat_engine = index.as_chat_engine(
+        chat_mode="condense_question", verbose=True, streaming=True
+    )
 
+if prompt := st.chat_input(
+    "Ask a question"
+):  # Prompt for user input and save to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
+for message in st.session_state.messages:  # Write message history to UI
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
+
+# If last message is not from assistant, generate a new response
+if st.session_state.messages[-1]["role"] != "assistant":
+    with st.chat_message("assistant"):
+        response_stream = st.session_state.chat_engine.stream_chat(prompt)
+        st.write_stream(response_stream.response_gen)
+        message = {"role": "assistant", "content": response_stream.response}
+        # Add response to message history
+        st.session_state.messages.append(message)
+        
