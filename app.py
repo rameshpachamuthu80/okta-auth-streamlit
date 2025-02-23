@@ -6,10 +6,9 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 st.set_page_config(page_title="Okta Auth Demo", page_icon='🔐', initial_sidebar_state="auto", menu_items=None)
 
 if not st.experimental_user.is_logged_in:
-    st.button("Log in with Okta", on_click=st.login)
+    st.login()
     st.stop()
     
-st.button("Log out", on_click=st.logout)
 #st.write(st.experimental_user)
 
 # Credits: https://github.com/streamlit/llamaindex-chat-with-streamlit-docs/tree/main
