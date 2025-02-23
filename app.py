@@ -24,30 +24,29 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
     st.session_state.messages = [
         {
             "role": "assistant",
-            "content": "Ask me a question about Streamlit's open-source Python library!",
+            "content": "Ask me a question!",
         }
     ]
 
 @st.cache_resource(show_spinner=False)
 def load_data():
-    reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
+    reader = SimpleDirectoryReader(input_dir=dir, recursive=True)
     docs = reader.load_data()
     Settings.llm = OpenAI(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         temperature=0.2,
-        system_prompt="""You are an expert on 
-        the Streamlit Python library and your 
-        job is to answer technical questions. 
-        Assume that all questions are related 
-        to the Streamlit Python library. Keep 
-        your answers technical and based on 
-        facts – do not hallucinate features.""",
+        system_prompt="""Your job is to answer questions about internal Stark company processes.""",
     )
     index = VectorStoreIndex.from_documents(docs)
     return index
 
+# define path to docs based on user "is_manager" attribute sent from Okta
+if st.experimental_user.is_manager:
+    dir = "./data/mng_docs"
+else:
+    dir = "./data/emp_docs"
 
-index = load_data()
+index = load_data(dir)
 
 if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
     st.session_state.chat_engine = index.as_chat_engine(
