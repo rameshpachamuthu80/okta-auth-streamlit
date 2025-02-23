@@ -3,7 +3,6 @@ import openai
 from llama_index.llms.openai import OpenAI
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 
-
 st.set_page_config(page_title="Okta Auth Demo", page_icon='🔐', layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 if not st.experimental_user.is_logged_in:
@@ -49,6 +48,54 @@ index = load_data(dir)
 
 # display info about currently logged in user
 st.info(f"Welcome {st.experimental_user.name}! Your Role: {st.experimental_user.job_title}")
+
+with st.expander("See more"):
+    st.markdown(  
+    """  
+    # 🏆 AI Chatbot Demo with Streamlit, Okta, LlamaIndex & OpenAI  
+
+    This **demo app** presents a **simple, user identity-aware AI chatbot** using the new **native Streamlit authentication** functionality  
+    _(available as of the **1.42.0** release)_, along with **Okta, LlamaIndex, and OpenAI**.  
+
+    ## 🚀 How It Works:  
+    - The **Streamlit app** is deployed on **Streamlit Community Cloud** and integrated with an **Okta account** using **OIDC**  
+      _(see [Okta documentation](#) for details)_.  
+    - Only users **assigned to the app** can access it via the **Okta dashboard** after verification with a **password and an Okta Verify code**.  
+    - **Metadata** about the currently logged-in user _(e.g., name, email, etc.)_ is available in `st.experimental_user`.  
+      This data is **parsed from the ID Token** that Okta sends.  
+    - Additional **custom attributes** can be added as **custom claims** in Okta Admin _(see [Okta docs](#))_.  
+      **⚠️ Note:** To retrieve additional attributes, you **must use a custom authorization server**!  
+    - Each user has an attribute:  
+      - **`is_manager`** (_boolean_)  
+      - **`job_title`**, which in production can be supplied to Okta via **Directory Integration**.  
+
+    ## 💬 Chatbot & Retrieval Setup  
+    - A **boilerplate chat interface** is built using **native Streamlit functionality**.  
+    - We use **LlamaIndex** with `SimpleDirectoryReader` to set up a **basic RAG pipeline**, which:  
+      - **Loads** documents from a directory  
+      - **Stores** embeddings in a **local vector store**  
+      - **Makes** them available for **LLM querying**  
+    - The chatbot uses **GPT-4o-mini** by **OpenAI**.  
+
+    ## 🔐 Role-Based Access Control  
+    - The directory contains **sample documentation** about fictional company processes, including:  
+      - **HR & IT FAQs**  
+      - **Budgeting documents** _(restricted access)_  
+    - **Budget information is only accessible to managers**.  
+      - 🔹 **If a user is _not_ a manager**, and asks the chatbot about budgeting, they **won't receive any information**  
+        _(because the model does not have access to those documents)_.  
+      - 🔹 **If a user _is_ a manager**, they **will be able to retrieve budget-related information**.  
+    - This access control is enforced using:  
+      ```python
+      st.experimental_user.is_manager  
+      ```  
+      to determine the appropriate **document directory path**.  
+
+    ---  
+    **🔗 Learn More:** [Streamlit Auth Docs](#) | [Okta Docs](#) | [LlamaIndex Docs](#)  
+    """  
+)
+    
 
 if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
     st.session_state.chat_engine = index.as_chat_engine(
