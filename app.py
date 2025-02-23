@@ -49,7 +49,7 @@ index = load_data(dir)
 # display info about currently logged in user
 st.info(f"Welcome {st.experimental_user.name}! Your Role: {st.experimental_user.job_title}")
 
-with st.expander("See more"):
+with st.expander("Learn More:"):
     st.markdown(  
     """  
     This **demo app** presents a **simple, user identity-aware AI chatbot** using the new **native Streamlit authentication** functionality  
