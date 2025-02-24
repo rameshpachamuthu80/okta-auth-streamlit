@@ -59,4 +59,21 @@ Install Dependencies:
 ```python
 pip install requirements.txt
 ```
-  
+
+### Configuring Secrets
+Navigate to your project directory and create a .streamlit folder. Inside the .streamlit folder, create a secrets.toml file.
+
+Open the secrets.toml file in a text editor and add the following content:
+```python
+[openai]
+key = ""  # Your OpenAI API key
+
+[auth]
+redirect_uri = "https://your_app_url/oauth2callback"
+cookie_secret = "random secret"  # Replace with a secure random string
+client_id = ""  # Okta Client ID
+client_secret = ""  # Okta Client Secret
+server_metadata_url = ""  # Okta Authorization Server Metadata URL
+```
+
+⚠️ Ensure secrets.toml is ignored in Git!
