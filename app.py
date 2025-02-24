@@ -51,15 +51,15 @@ st.info(f"Welcome {st.experimental_user.name}! Your Role: {st.experimental_user.
 with st.expander("Learn More"):
     st.markdown(  
     """  
-    This **demo app** presents a **simple, user identity-aware AI chatbot** using the new **native Streamlit authentication** functionality  
+    This demo app presents a simple, user identity-aware AI chatbot using the new native Streamlit authentication functionality  
     _(available as of the **1.42.0** release)_, along with **Okta, LlamaIndex, and OpenAI**.  
 
     ## 🚀 How It Works:  
     - The **Streamlit app** is deployed on **Streamlit Community Cloud** and integrated with an **Okta account** using **OIDC**  
       _(see [docs](https://docs.streamlit.io/develop/concepts/connections/authentication) for details)_.  
-    - Only users **assigned to the app** can access it via the **Okta dashboard** after verification with a **password and an Okta Verify code**.  
-    - **Metadata** about the currently logged-in user _(e.g., name, email, etc.)_ is available in `st.experimental_user`.  
-      This data is **parsed from the ID Token** that Okta sends.  
+    - Only users assigned to the app can access it via the Okta dashboard after verification with a password and an Okta Verify code.  
+    - Metadata about the currently logged-in user _(e.g., name, email, etc.)_ is available in `st.experimental_user`.  
+      This data is parsed from the ID Token that Okta sends.  
     - Additional **custom attributes** can be added as **custom claims** in Okta Admin _(see [Okta docs](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/main/))_.  
       **⚠️ Note:** To retrieve additional attributes, you **must use a custom authorization server**!  
     - Each user has an attribute:  
@@ -79,7 +79,7 @@ with st.expander("Learn More"):
       - **HR & IT FAQs**  
       - **Budgeting documents** _(restricted access)_  
     - **Budget information is only accessible to managers**.  
-      - 🔹 **If a user is _not_ a manager**, and asks the chatbot about budgeting, they **won't receive any information**  
+      - 🔹 **If a user is _not_ a manager**, and asks the chatbot about budgeting, they won't receive any information
         _(because the model does not have access to those documents)_.  
       - 🔹 **If a user _is_ a manager**, they **will be able to retrieve budget-related information**.  
     - This access control is enforced using:  
