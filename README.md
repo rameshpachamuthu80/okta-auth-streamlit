@@ -23,7 +23,8 @@ _(available as of Streamlit 1.42.0)_ with Okta, LlamaIndex, and OpenAI.
 
 ### 2. Custom Attributes in Okta
 - Additional custom attributes (e.g., is_manager, job_title) can be added as custom claims in Okta Admin.
-⚠️ Note: To retrieve additional attributes, you must use a custom authorization server.
+
+Note: To retrieve additional attributes, you must use a custom authorization server.
 
 ### 3. AI Chatbot & RAG Pipeline
 - A boilerplate chat interface is built using native Streamlit functionality.
