@@ -49,11 +49,11 @@ The chatbot retrieves documents based on user roles:
 - Non-managers cannot access budget information.
 
 ## Installation & Setup
-Prerequisites
-Python 3.9+
-Streamlit 1.42.0+
-Okta Developer Account
-OpenAI API Key
+Prerequisites: 
+- Python 3.9+
+- Streamlit 1.42.0+
+- Okta Developer Account
+- OpenAI API Key
 
 Install Dependencies:
 ```python
