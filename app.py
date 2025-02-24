@@ -8,7 +8,8 @@ st.set_page_config(page_title="Okta Auth Demo", page_icon='🔐', initial_sideba
 if not st.experimental_user.is_logged_in:
     st.login()
     st.stop()
-    
+
+st.button("Log out", on_click=st.logout)
 #st.write(st.experimental_user)
 
 # Credits: https://github.com/streamlit/llamaindex-chat-with-streamlit-docs/tree/main
