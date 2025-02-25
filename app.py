@@ -10,7 +10,7 @@ if not st.experimental_user.is_logged_in:
     st.stop()
 
 # st.button("Log out", on_click=st.logout)
-st.write(st.experimental_user)
+# st.write(st.experimental_user)
 
 # Credits: https://github.com/streamlit/llamaindex-chat-with-streamlit-docs/tree/main
 openai.api_key = st.secrets.openai.key
